@@ -1,0 +1,18 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+<div class="card" style="margin-bottom:12px; 
+                        padding:12px; 
+                        margin-right:12px; 
+                        max-width:21rem;">
+    {% if self.image %}
+        {% image self.image original as img %}
+        <img src="{{ img.url }}" class="card-img-top img-rounded" alt="{{ img.alt }}" height="300px" width="300px">
+    {% endif %}
+    <div class="card-body">
+        <h2 class="card-title">{{ self.title }}</h2>
+        <p class="card-text">{{ self.body }}</p>
+        <a href=" pageurl self.page_link " class="btn btn-primary">
+            Lire Plus</a>
+    </div>
+</div>

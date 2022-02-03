@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+
+{% block body_class %}
+template-blogpage
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1>{{ page.title }}</h1>
+    <p class="meta">{{ page.created }}</p>
+    <div class="intro">{{ page.intro }}</div>
+
+
+      {{ page.heading }}
+      {{ page.main_content|richtext }}
+      {{ page.main_content.card }}
+
+    <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
+</div>
+
+{% endblock %}

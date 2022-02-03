@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-blogindexpage{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+<h1>{{ page.title }}</h1>
+
+   <div class="intro">{{ page.intro|richtext }}</div>
+
+    {% for post in articles %}
+        <h2><a href="{% pageurl post %}"> {{ post.title }}</a> </h2>
+        <h3> {{ post.specific.created }} </h3>
+        {{ post.specific.intro }}
+
+        {% for item in post.specific.gallery_images.all %}
+        <div style="float: left; margin: 10px">
+            {% image item.image fill-320x240 %}
+            <p>{{ item.caption }}</p>
+            <br>
+        </div>
+        {% endfor %}
+
+        {{ post.specific.body|richtext }}
+        <hr>
+    {% endfor %}
+</div>
+
+{% endblock %}

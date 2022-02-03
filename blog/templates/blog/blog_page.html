@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+
+{% block body_class %}
+  template-blogpage
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>{{ page.title }}</h1>
+        <p class="meta">{{ page.created }}</p>
+        <div class="intro">{{ page.intro }}</div>
+
+
+        {% for item in page.gallery_images.all %}
+        <div style="float: left; margin: 10px">
+            {% image item.image fill-320x240 %}
+            <p>{{ item.caption }}</p>
+        </div>
+        {% endfor %}
+
+        {{ page.body|richtext }}
+
+        <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
+    </div>
+
+{% endblock %}
+
+
+{% block extra_css %}
+<style>
+body {
+    background-color: #FFF;
+    color: #3a3a3a;
+}
+
+body, button, input, select, textarea {
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-weight: 400;
+    text-transform: none;
+    font-size: 17px;
+    line-height: 1.5;
+}
+html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+ 
+  </style>
+{% endblock %}

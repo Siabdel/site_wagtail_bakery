@@ -1,0 +1,30 @@
+{% extends "creative_base.html" %}
+{% load static %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block extra_css %} {% endblock %}
+
+{% block header %}
+
+    <div class="header-content">
+        <div class="header-content-inner">
+            <h1>{{ self.banner_title }} </h1>
+            <hr>
+            <h2> {{ self.banner_subtitle|richtext }} </h2>
+
+            <p> {{ self.banner_body|richtext }}</p>
+            {% if not self.banner_cta %}
+                <a class="btn btn-primary btn-lg" href="#" role="@todo">Voir plus</a>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+    {% image self.banner_image fill-1920x600 as img %}
+
+{% endblock %}

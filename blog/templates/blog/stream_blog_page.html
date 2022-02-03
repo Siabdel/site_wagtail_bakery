@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    <div class="container">
+        <div class="breadcrumb">
+            <h1> {{ page.title }} </h1>
+            <p> {{ page.date}}  
+                <small> {{ page.auteur }} </small>
+            </p>
+        </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="span2">
+                <article>
+                    {% for block in page.body %}
+                        {% if block.block_type == 'card' %}
+                            {% include_block block %}
+                        {% endif %}
+                    {% endfor %}
+                </article>
+            </div>
+        </div>
+    </div>
+
+    </div>
+{% endblock %}
